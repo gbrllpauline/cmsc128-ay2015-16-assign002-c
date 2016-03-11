@@ -1,0 +1,112 @@
+#include<string.h>
+
+int getHammingDistance(char str1[], char str2[]);
+int countSubstrPattern(char string[], char pattern[]);
+int isValidString(char str[], char alphabet[]);
+int inAlphabet(char ch, char alphabet[]);
+
+// 01.
+int getHammingDistance(char str1[], char str2[]){
+	int i = 0, counter = 0;
+	int length1 = strlen(str1);
+	int length2 = strlen(str2);	
+
+	if(length1 != length2) printf("Error: Strings are not equal\n");
+	else{
+		while( i != length1){
+			if(str1[i] != str2[i]) counter++;
+			i++;
+		}
+	
+	}
+
+	return counter;
+
+}
+
+//02.
+int countSubstrPattern(char string[], char pattern[]){
+		int stringlen = strlen(string);
+		int patternlen = strlen(pattern);
+		int i = 0;
+		int j = 0; 
+		int k = 0; 
+		int counter = 0;		
+
+		for(i = 0; i < stringlen; i++){
+			if(string[i] == pattern[0]){
+				for(j = 1, k = i + 1; j < patternlen+1; j++, k++){
+						if(string[k] != pattern[j]) break;
+				}
+				if(j >= patternlen) counter++;
+			}
+		}
+		return counter;
+}
+
+
+//03.
+int isValidString(char string[], char alphabet[]){
+	int stringlen = strlen(string);
+	int alphabetlen = strlen(alphabet);
+	int i = 0, j = 0, flag = 0;
+
+	for(i = 0; i < stringlen; i++){
+		flag = 0;
+		for(j = 0; j < alphabetlen; j++){
+				if(string[i] == alphabet[j]) flag = 1;
+		}
+		if(flag == 0) break; 
+	}
+	return flag;
+}
+
+//04.
+int getSkew(char string[], int n){
+	int Gcounter = 0;
+	int Ccounter = 0;
+	int result = 0;
+	int i = 0;
+	int length = strlen(string);
+
+	for(i = 0; i < n; i++){
+		if(string[i] == 'G') Gcounter++;
+		else if(string[i] == 'C') Ccounter++;
+	}
+
+	result = Gcounter - Ccounter;
+	return result;
+	
+}
+
+//05.
+int getMaxSkew(char string[], int n){
+	int Gcounter = 0;
+	int length = strlen(string);	
+	int i;
+
+	for(i = 0; i < length; i++){
+		if(string[i] == "G") Gcounter++;
+	}
+	
+	return Gcounter;
+}
+
+//06.
+int getMinSkew(char string[], int n){
+	int Gcounter = 0;
+	int Ccounter = 0;
+	int result = 0;
+	int i = 0;
+	int length = strlen(string);
+
+	for(i = 0; i < n; i++){
+		if(string[i] == 'G') Gcounter++;
+		else if(string[i] == 'C') Ccounter++;
+	}
+
+	result = Gcounter - Ccounter;
+	return result;
+	
+}
+
